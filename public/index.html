@@ -18,6 +18,7 @@
     <div class="center-form">
         <div class="wrapper">
             <div class="form-box order">
+                <span class="close-form"></span>
                 <h3>Place your Order</h3><br>
 
                 <form autocomplete="off" id="order-form">
@@ -41,22 +42,22 @@
                         <select name="drink" id="drink" class="drink-options">
                             <div>
                             <option value="None" selected> Select </option>
-                            <option value="Lemonade">Lemonade</option>
-                            <option value="Iced Tea">Iced Tea</option>
-                            <option value="Sparkling Water">Sparkling Water</option>
-                            <option value="Soda">Soda</option>
-                            <option value="Diet soda">Diet Soda</option>
+                            <option value=1>Lemonade</option>
+                            <option value=2>Iced Tea</option>
+                            <option value=3>Sparkling Water</option>
+                            <option value=4>Soda</option>
+                            <option value=5>Diet Soda</option>
                             </div>
                         </select>
                     </div><br>
 
                     <div class="radio-btns">
-                        <input class="radio-input" type="radio" name="in-or-go" value="public" id="dine-in" required/>
+                        <input class="radio-input" type="radio" name="in-or-go" value="Dine-In" id="dine-in" required/>
                         <label class="dine-in" for="dine-in">Dine In
                         </label>
                         <br>
                         <div class="radiobtn-divider">||</div>
-                        <input class="radio-input" type="radio" name="in-or-go" value="private" id="to-go"/>
+                        <input class="radio-input" type="radio" name="in-or-go" value="To-Go" id="to-go"/>
                         <label class="to-go" for="to-go">To Go
                         </label>
                     </div>
@@ -66,9 +67,9 @@
                         <label class="pickup-title">Pickup Time:</label>
                         <select name="pickup-time" id="pickup-time" class="time-options" required>
                             <option value="" selected> Select </option>
-                            <option value="Morning">Morning (9-11AM)</option>
-                            <option value="Afternoon">Afternoon (12-4PM)</option>
-                            <option value="Evening">Evening (5-8PM)</option>
+                            <option value=1>Morning (9-11AM)</option>
+                            <option value=2>Afternoon (12-4PM)</option>
+                            <option value=3>Evening (5-8PM)</option>
                         </select>
                         </div>
                     </div><br>

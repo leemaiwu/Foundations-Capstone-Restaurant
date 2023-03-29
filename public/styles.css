@@ -1,7 +1,7 @@
 body {
     background-color: rgb(0, 0, 0);
     background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg");
-    z-index: -1;
+    margin: auto;
 }
 
 .title {
@@ -9,10 +9,10 @@ body {
     justify-content: center;
     color: white;
     margin-top: 35px;
-    margin-bottom: 75px;
+    margin-bottom: 80px;
     font-family: "Chalkduster";
     font-weight: lighter;
-    font-size: 80px;
+    font-size: 6.5vw;
     letter-spacing: 2px;
     text-shadow: 1px 1px 6px rgb(0, 0, 0);
 }
@@ -24,7 +24,7 @@ body {
     margin-top: -60px;
     font-family: "Courier New";
     font-weight: lighter;
-    font-size: 18px;
+    font-size: 1.5vw;
     border-top: solid 1px #e4e2e2;
     border-bottom: solid 1px #e4e2e2;
     padding: 3px;
@@ -82,7 +82,7 @@ body {
     align-items: center;
     color: rgb(207, 207, 207);
     width: 330px;
-    height: 390px;
+    height: 380px;
     background: transparent;
     border: 2px solid rgb(202, 202, 202, .5);
     border-radius: 20px;
@@ -91,6 +91,8 @@ body {
     overflow: hidden;
     transform: scale(0);
     padding: 40px;
+    padding-top: 50px;
+    padding-bottom: 35px;
     transition: transform 1s ease, height .2s ease;
     font-family: "Copperplate";
     text-shadow: 1px 1px 2px rgb(38, 38, 38);
@@ -109,6 +111,39 @@ body {
     font-weight: lighter;
     color: rgb(210, 210, 210);
 }
+
+/* close button */
+.close-form {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 33px;
+    height: 33px;
+    opacity: 3;
+  }
+
+  .close-form:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .close-form:before, .close-form:after {
+    position: absolute;
+    right: 17px;
+    top: 2px;
+    content: ' ';
+    height: 30px;
+    width: 3px;
+    background-color: #565656f5;
+  }
+
+  .close-form:before {
+    transform: rotate(45deg);
+  }
+
+  .close-form:after {
+    transform: rotate(-45deg);
+  }
 
 /* input fields */
 .input-box {
@@ -274,12 +309,12 @@ body {
 .placed-orders-title {
     display: flex;
     width: 100%;
-    margin-top: 25px;
+    margin-top: 35px;
     justify-content: center;
     color: #e4e2e2;
     font-family: "Courier New";
     font-weight: lighter;
-    font-size: 18px;
+    font-size: 1.5vw;
     border-top: solid 1px #e4e2e2;
     border-bottom: solid 1px #e4e2e2;
     padding: 4px;

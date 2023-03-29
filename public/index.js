@@ -6,6 +6,7 @@ const pickupPopup = document.getElementById('pickup-popup')
 const dineInRadio = document.getElementById('dine-in')
 const orderForm = document.getElementById('order-form')
 const orderContainer = document.getElementById('orders-container')
+const closeForm = document.querySelector('.close-form')
 let counter = 1
 
 const baseURL = 'http://localhost:5500/'
@@ -48,7 +49,7 @@ function submitOrder (event) {
     const meal = document.getElementById('meal').value
     const sides = document.getElementById('sides').value
     const drink = document.getElementById('drink').value
-    const inOrGoRadio = document.querySelector(`input[name="in-or-go"]:checked`)
+    const inOrGoRadio = document.querySelector(`input[name="in-or-go"]:checked`).value
     const pickingUp = document.getElementById('pickup-time').value
     let inOrGo
     let pickupTime
@@ -63,7 +64,7 @@ function submitOrder (event) {
     } else {
         pickupTime = null
         }
-    if (inOrGo === 'private') {
+    if (inOrGo === 'To-Go') {
         diningPreference = `To Go, Pickup Time: ${pickupTime}`
     } else {
         diningPreference = 'Dine in'
@@ -73,30 +74,42 @@ function submitOrder (event) {
 
     axios.post('http://localhost:5500/order', body)
     .then((response) => {
-        let data = response.data
-        console.log(data)
+        let data = response.data[0]
+        let drinkid = data.drink_id
+        let pickuptime = data.pickup_time
 
-        const order = document.createElement('div')
-        order.classList.add('ordered-list')
-        order.innerHTML = `
-            <p># ${counter}</p>
-            <p>Name: ${name}</p>
-            <p>Meal: ${meal} with ${sides}</p>
-            <p>Drink: ${drink}</p>
-            <p>${diningPreference}</p>
-            <div class="bothOrderedButtons">
-            <button class="orderedEditButton">Edit</button>
-            <button class="orderedDeleteButton">Delete</button>
-            </div>
-        `
-        orderContainer.appendChild(order)
-        hideOrderWindow()
-        counter += 1
+        axios.get('http://localhost:5500/order?drink_id=' + drinkid + '&pickup_time=' + pickuptime)
+        .then((response) => {
+            let {drink_id, pickup_time} = response.data[0]
+            const order = document.createElement('div')
+            order.classList.add('ordered-list')
+            order.innerHTML = 
+                `
+                <p># ${counter}</p>
+                <p>Name: ${name}</p>
+                <p>Meal: ${meal} with ${sides}</p>
+                <p>Drink: ${drink_id}</p>
+                <p>${inOrGoRadio}</p>
+                <p>${pickup_time}</p>
+                <div class="bothOrderedButtons">
+                <button class="orderedEditButton">Edit</button>
+                <button class="orderedDeleteButton">Delete</button>
+                </div>
+                `
+            orderContainer.appendChild(order)
+            hideOrderWindow()
+            counter += 1
+        })
     })
 }
+
+
 
 orderLink.addEventListener('click', placeOrder)
 btnPopup.addEventListener('click', orderWindow)
 toGoRadio.addEventListener('change', displayPickup)
 dineInRadio.addEventListener('change', hidePickup)
 orderForm.addEventListener('submit', submitOrder)
+closeForm.addEventListener('click', () => {
+    wrapper.classList.toggle('active-popup')
+})
