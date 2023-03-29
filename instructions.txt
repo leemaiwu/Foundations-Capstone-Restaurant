@@ -1,0 +1,18 @@
+Here's the assignment:
+
+Make an full-stack app (front end and back end) that can take people's food orders.
+
+The webpage will have a form that will take in the following user input:
+ - name of person (text input)
+ - name of meal (text input)
+ - name of side (text input)
+ - drink (drop down with several popular drinks)
+ - to go or to stay (radio button)
+ - pickup time (dropdown from several times at night)
+
+
+when that form is submitted, your backend will save it in a "database" (which is just an array). When you save this data into your array, you should also assign each entry a unique id number. (A good approach might be to have each meal entry get saved as an object in the array.)
+
+After you have done this functionality, you should make sure that your front end always displays the meals ordered (and some info affiliated with them), sorted in order of pickup time (soonest closest to the top).
+
+After this, put a form at the bottom of the page that allows users to edit their meal or their side dish. Identify a meal by it's id: customers will have to input the id of the meal saved so you know which one to edit.

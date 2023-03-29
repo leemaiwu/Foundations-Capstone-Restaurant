@@ -1,0 +1,380 @@
+body {
+    background-color: rgb(0, 0, 0);
+    background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg");
+    z-index: -1;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 35px;
+    margin-bottom: 75px;
+    font-family: "Chalkduster";
+    font-weight: lighter;
+    font-size: 80px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 6px rgb(0, 0, 0);
+}
+
+.order-title {
+    display: flex;
+    justify-content: center;
+    color: #e4e2e2;
+    margin-top: -60px;
+    font-family: "Courier New";
+    font-weight: lighter;
+    font-size: 18px;
+    border-top: solid 1px #e4e2e2;
+    border-bottom: solid 1px #e4e2e2;
+    padding: 3px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    text-shadow: 2px 1px 1px rgb(38, 38, 38);
+}
+
+.center-order-button {
+    display: flex;
+    justify-content: center;
+}
+
+.order-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 48px;
+    width: 160px;
+}
+
+:hover.order-button{
+    color: #fff;
+    background-color: #e4e2e2;
+    transition: .35s;
+}
+
+#orders-container {
+    display: flex;
+}
+
+/* popup form */
+.center-form {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(207, 207, 207);
+    width: 330px;
+    height: 390px;
+    background: transparent;
+    border: 2px solid rgb(202, 202, 202, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    overflow: hidden;
+    transform: scale(0);
+    padding: 40px;
+    transition: transform 1s ease, height .2s ease;
+    font-family: "Copperplate";
+    text-shadow: 1px 1px 2px rgb(38, 38, 38);
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.form-box h3 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 30px;
+    font-family: "Monospace", "Copperplate";
+    font-weight: lighter;
+    color: rgb(210, 210, 210);
+}
+
+/* input fields */
+.input-box {
+    width: 100%;
+    height: 25px;
+    border-bottom: 2px solid white; 
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 22px;
+}
+
+.input-box label {
+    pointer-events: none;
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+
+.input-box input {
+    background: transparent;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 20px;
+    font-family: "Monospace", "Copperplate";
+    margin-left: 10px;
+}:focus {
+    outline: none;
+}
+
+/* Drink options */
+.drink-menu {
+    margin: 8px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.drink-title {
+    font-size: 22px;
+    color: rgb(220, 220, 220);
+    letter-spacing: 1px;
+}
+
+.drink-options {
+    width: 70%;
+    height: 30px;
+    background-color: transparent;
+    color: white;
+    padding: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+    font-size: 15px;
+    letter-spacing: .5px;
+}
+
+:hover.drink-options{
+    color: #fff;
+    background-color: #e4e2e277;
+    transition: .35s;
+}
+
+/* radio buttons */
+.radio-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: lighter;
+    font-size: 19px;
+    width: 100%;
+    height: 40px;
+}
+
+.to-go {
+    right: 5px;
+}
+
+.radiobtn-divider{
+   margin-left: 45px;
+   margin-right: 45px;
+   font-size: 25px;
+   color: #cdcdcd;
+}
+
+.radio-input {
+    margin-right: 15px;
+    margin-bottom: 4px;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.dine-in {
+    cursor: pointer;
+}
+
+.to-go {
+    cursor: pointer;
+}
+
+/* Pickup Time Dropdown */
+.pickup-time {
+    margin: 8px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.pickup-title {
+    font-size: 22px;
+    color: rgb(225, 225, 225);
+    letter-spacing: 1px;
+}
+
+.time-options {
+    width: 51%;
+    height: 30px;
+    background-color: transparent;
+    color: white;
+    padding: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}
+
+:hover.time-options {
+    color: #fff;
+    background-color: #e4e2e277;
+    transition: .35s;
+}
+
+/* Submit button */
+.submit-btn {
+    width: 70%;
+    height: 37px;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    box-shadow: inset 0 0 0 1px #ffffff;
+    font-size: 16px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+}
+
+:hover.submit-btn{
+    color: #242424;
+    background-color: #ffffff;
+    transition: .35s;
+}
+
+.center-submit-btn {
+    display: flex;
+    justify-content: center;
+}
+
+/* Footer */
+.placed-orders-title {
+    display: flex;
+    width: 100%;
+    margin-top: 25px;
+    justify-content: center;
+    color: #e4e2e2;
+    font-family: "Courier New";
+    font-weight: lighter;
+    font-size: 18px;
+    border-top: solid 1px #e4e2e2;
+    border-bottom: solid 1px #e4e2e2;
+    padding: 4px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    text-shadow: 2px 1px 1px rgb(0, 0, 0);
+}
+
+footer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-shadow: 2px 1px 1px rgb(0, 0, 0);
+}
+
+.ordered-list {
+    color: white;
+    margin: 15px;
+    margin-left: 30px;
+    padding: 20px;
+    outline: none;
+    font-size: 14px;
+    border-radius: 32px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    text-transform: uppercase;
+    text-shadow: 2px 1px 1px rgb(36, 36, 36);
+}
+
+/* Placed Orders 'Edit' and 'Delete' Buttons */
+.bothOrderedButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.orderedEditButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 40px;
+    width: 110px;
+}
+
+:hover.orderedEditButton{
+    color: #fff;
+    background-color: #e4e2e2;
+    transition: .35s;
+}
+
+.orderedDeleteButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 40px;
+    width: 110px;
+}
+
+:hover.orderedDeleteButton{
+    color: #fff;
+    background-color: #e4e2e2;
+    transition: .35s;
+}

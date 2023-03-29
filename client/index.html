@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <h1 class="title">Restaurant</h1>
+    <h2 class="order-title">Order from our Menu</h2><br>
+
+    <div class="center-order-button">
+        <button class="order-button">Order</button>
+    </div><br><br>
+
+    <div class="center-form">
+        <div class="wrapper">
+            <div class="form-box order">
+                <h3>Place your Order</h3><br>
+
+                <form autocomplete="off" id="order-form">
+                    <div class="input-box">
+                        <label>Name: </label>
+                        <input type="text" id="name" required>
+                    </div><br>
+                    <div class="input-box">
+                        <label>Meal: </label>
+                        <input type="text" id="meal" required>
+                    </div><br>
+                    <div class="input-box">
+                        <label>Sides: </label>
+                        <input type="text" id="sides" required>
+                    </div><br>
+
+                    <div class="drink-menu">
+                        <label class="drink-title" required>Drink:</label>
+                        <br>
+                        <br>
+                        <select name="drink" id="drink" class="drink-options">
+                            <div>
+                            <option value="None" selected> Select </option>
+                            <option value="Lemonade">Lemonade</option>
+                            <option value="Iced Tea">Iced Tea</option>
+                            <option value="Sparkling Water">Sparkling Water</option>
+                            <option value="Soda">Soda</option>
+                            <option value="Diet soda">Diet Soda</option>
+                            </div>
+                        </select>
+                    </div><br>
+
+                    <div class="radio-btns">
+                        <input class="radio-input" type="radio" name="in-or-go" value="public" id="dine-in" required/>
+                        <label class="dine-in" for="dine-in">Dine In
+                        </label>
+                        <br>
+                        <div class="radiobtn-divider">||</div>
+                        <input class="radio-input" type="radio" name="in-or-go" value="private" id="to-go"/>
+                        <label class="to-go" for="to-go">To Go
+                        </label>
+                    </div>
+
+                    <div class="pickup-time" id="pickup-popup" style="display:none">
+                        <div><br>
+                        <label class="pickup-title">Pickup Time:</label>
+                        <select name="pickup-time" id="pickup-time" class="time-options" required>
+                            <option value="" selected> Select </option>
+                            <option value="Morning">Morning (9-11AM)</option>
+                            <option value="Afternoon">Afternoon (12-4PM)</option>
+                            <option value="Evening">Evening (5-8PM)</option>
+                        </select>
+                        </div>
+                    </div><br>
+
+                    <div class="center-submit-btn">
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </div><br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer id="orders-container">
+        <h2 class="placed-orders-title">Placed Orders</h2>
+        <div id="delete-section"></div>
+    </footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
