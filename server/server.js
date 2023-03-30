@@ -28,42 +28,42 @@ app.post('/seed', seed)
 app.post('/order', (req, res) => {
     let {name, meal, sides, drink, inOrGoRadio, pickingUp} = req.body
 
-    if (pickingUp === null) {
-        sequelize.query(`
-        INSERT INTO orders (name, meal, sides, drink_id, is_to_go)
-        VALUES ('${name}', '${meal}', '${sides}', ${drink}, '${inOrGoRadio}')
+    const pickupTimeClause = pickingUp ? `, pickup_time` : '';
+
+    const pickupTimeValue = pickingUp ? `, ${pickingUp}` : '';
+
+    sequelize.query(`
+        INSERT INTO orders (name, meal, sides, drink_name, is_to_go${pickupTimeClause})
+        VALUES ('${name}', '${meal}', '${sides}', ${drink}, '${inOrGoRadio}'${pickupTimeValue})
         RETURNING *;
     `)
     .then((dbResult) => {
-
         res.status(200).send(dbResult[0])
     })
-    } else {
-    sequelize.query(`
-        INSERT INTO orders (name, meal, sides, drink_id, is_to_go, pickup_time)
-        VALUES ('${name}', '${meal}', '${sides}', ${drink}, '${inOrGoRadio}', ${pickingUp})
-        RETURNING *;
-    `)
-    .then((dbResult) => {
-        res.status(200).send(dbResult[0])
-    })}
+    .catch((error) => {
+        console.error(error)
+        res.status(500).send('Error submitting order')
+    })
 })
 
 app.get('/order', (req, res) => {
-    let {drink_id, pickup_time} = req.query
+    let {drink_name, pickup_time} = req.query
 
     sequelize.query(`
-        SELECT drink.name AS drink, pickup_time.time AS time
-        FROM drink
-        JOIN orders
-        ON drink.id = orders.drink_id
-        JOIN pickup_time
-        ON pickup_time.id = orders.pickup_time
-        WHERE drink.id = ${drink_id} AND pickup_time.id = ${pickup_time}
-        ORDER BY orders.pickup_time;
+
+        SELECT orders.*, drink.name AS drink_name, pickup_time.time AS pickup_time
+        FROM orders
+        JOIN drink ON drink.id = orders.drink_name
+        JOIN pickup_time ON pickup_time.id = orders.pickup_time
+        WHERE drink.id = ${drink_name} AND pickup_time.id = ${pickup_time};
+
     `)
     .then((dbResult) => {
         res.status(200).send(dbResult[0])
+    })
+    .catch((error) => {
+        console.error(error)
+        res.status(500).send('Error retrieving order')
     })
 })
 

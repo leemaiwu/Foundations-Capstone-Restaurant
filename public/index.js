@@ -51,36 +51,22 @@ function submitOrder (event) {
     const drink = document.getElementById('drink').value
     const inOrGoRadio = document.querySelector(`input[name="in-or-go"]:checked`).value
     const pickingUp = document.getElementById('pickup-time').value
-    let inOrGo
-    let pickupTime
-    let diningPreference
-    if (inOrGoRadio) {
-        inOrGo = inOrGoRadio.value
-    } else {
-        inOrGo = null
-        }
-    if (document.getElementById('pickup-time')) {
-        pickupTime = document.getElementById('pickup-time').value
-    } else {
-        pickupTime = null
-        }
-    if (inOrGo === 'To-Go') {
-        diningPreference = `To Go, Pickup Time: ${pickupTime}`
-    } else {
-        diningPreference = 'Dine in'
-        }
+
+    const inOrGo = inOrGoRadio ? inOrGoRadio.value : null;
+    const pickupTime = document.getElementById('pickup-time') ? pickingUp : null;
+    const diningPreference = inOrGo === 'To-Go' ? `To Go, Pickup Time: ${pickupTime}` : 'Dine in';
 
     let body = {name, meal, sides, drink, inOrGoRadio, pickingUp}
 
     axios.post('http://localhost:5500/order', body)
     .then((response) => {
         let data = response.data[0]
-        let drinkid = data.drink_id
+        let drinkid = data.drink_name
         let pickuptime = data.pickup_time
 
-        axios.get('http://localhost:5500/order?drink_id=' + drinkid + '&pickup_time=' + pickuptime)
+        axios.get('http://localhost:5500/order?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
         .then((response) => {
-            let {drink_id, pickup_time} = response.data[0]
+            let {drink_name, pickup_time} = response.data[0]
             const order = document.createElement('div')
             order.classList.add('ordered-list')
             order.innerHTML = 
@@ -88,7 +74,7 @@ function submitOrder (event) {
                 <p># ${counter}</p>
                 <p>Name: ${name}</p>
                 <p>Meal: ${meal} with ${sides}</p>
-                <p>Drink: ${drink_id}</p>
+                <p>Drink: ${drink_name}</p>
                 <p>${inOrGoRadio}</p>
                 <p>${pickup_time}</p>
                 <div class="bothOrderedButtons">
@@ -102,8 +88,6 @@ function submitOrder (event) {
         })
     })
 }
-
-
 
 orderLink.addEventListener('click', placeOrder)
 btnPopup.addEventListener('click', orderWindow)
