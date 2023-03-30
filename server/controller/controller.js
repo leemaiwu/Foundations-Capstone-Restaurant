@@ -42,4 +42,35 @@ module.exports = {
             console.log(`Error seeding database. ${err}`)
         })
     },
+
+    getOrder: (req, res) => {
+        const { drink_name, pickup_time, order_id } = req.query
+        sequelize.query(`
+            SELECT orders.*, 
+            CASE 
+            WHEN orders.is_to_go = 'to-go' 
+            THEN drink.name
+            ELSE 'N/A'
+            END AS drink_name,
+            CASE 
+            WHEN orders.is_to_go = 'to-go'
+            THEN pickup_time.time
+            ELSE 'N/A'
+            END AS pickup_time
+            FROM orders
+            LEFT JOIN drink ON drink.id = orders.drink_name
+            LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
+            WHERE 
+              (orders.is_to_go = 'to-go' AND drink.id = ${drink_name} AND pickup_time.id = ${pickup_time})
+            OR 
+              (orders.is_to_go = 'dine-in' AND orders.id = ${order_id})
+            `)
+          .then((dbResult) => {
+            res.status(200).send(dbResult[0])
+          })
+          .catch((error) => {
+            console.error(error)
+            res.status(500).send("Error retrieving order")
+          })
+      }
 }

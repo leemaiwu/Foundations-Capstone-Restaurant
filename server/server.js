@@ -29,7 +29,6 @@ app.post('/order', (req, res) => {
     let {name, meal, sides, drink, inOrGoRadio, pickingUp} = req.body
 
     const pickupTimeClause = pickingUp ? `, pickup_time` : '';
-
     const pickupTimeValue = pickingUp ? `, ${pickingUp}` : '';
 
     sequelize.query(`
@@ -47,24 +46,24 @@ app.post('/order', (req, res) => {
 })
 
 app.get('/order', (req, res) => {
-    let {drink_name, pickup_time} = req.query
+    let { drink_name, pickup_time } = req.query;
 
-    sequelize.query(`
-
+    const query = `
         SELECT orders.*, drink.name AS drink_name, pickup_time.time AS pickup_time
         FROM orders
         JOIN drink ON drink.id = orders.drink_name
-        JOIN pickup_time ON pickup_time.id = orders.pickup_time
-        WHERE drink.id = ${drink_name} AND pickup_time.id = ${pickup_time};
+        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
+        WHERE drink.id = ${drink_name} AND (pickup_time.id = ${pickup_time} OR pickup_time.id IS NULL)
+    `;
 
-    `)
-    .then((dbResult) => {
-        res.status(200).send(dbResult[0])
-    })
-    .catch((error) => {
-        console.error(error)
-        res.status(500).send('Error retrieving order')
-    })
+    sequelize.query(query)
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0])
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('Error retrieving order')
+        })
 })
 
 app.listen(SERVER_PORT, () => {
