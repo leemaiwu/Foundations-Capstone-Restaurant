@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <h1 class="title">Restaurant</h1>
+    <header class="header">
+        <h1 id="main-title">Restaurant</h1>
+    </header>
     <h2 class="order-title">Order from our Menu</h2><br>
 
     <div class="center-order-button">
@@ -82,9 +84,22 @@
         </div>
     </div>
 
-    <footer id="orders-container">
-        <h2 class="placed-orders-title">Placed Orders</h2>
-        <div id="delete-section"></div>
+    <footer>
+            <h2 class="placed-orders-title">Recently Placed Orders</h2>
+            <div id="orders-container"></div>
+            <div id="delete-section"></div>
+
+            <h2 class="order-history-title">Order History</h2>
+            <div id="order-history-container"></div>
+            <div id="delete-section"></div>
+
+            <section class="name-suggestion">
+                <p>If you think you have a fire name for our Restaurant, lettuce know!</p>
+                <div class="suggestion-input">
+                    <input type="text">
+                </div>
+                <a href="#" class="submit-name">Submit</a>
+            </section>
     </footer>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

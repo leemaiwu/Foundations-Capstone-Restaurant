@@ -46,7 +46,7 @@ app.post('/order', (req, res) => {
 })
 
 app.get('/order', (req, res) => {
-    let { drink_name, pickup_time } = req.query;
+    let { drink_name, pickup_time } = req.query
 
     const query = `
         SELECT orders.*, drink.name AS drink_name, pickup_time.time AS pickup_time
@@ -54,8 +54,7 @@ app.get('/order', (req, res) => {
         JOIN drink ON drink.id = orders.drink_name
         LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
         WHERE drink.id = ${drink_name} AND (pickup_time.id = ${pickup_time} OR pickup_time.id IS NULL)
-    `;
-
+    `
     sequelize.query(query)
         .then((dbResult) => {
             res.status(200).send(dbResult[0])
@@ -64,6 +63,22 @@ app.get('/order', (req, res) => {
             console.error(error)
             res.status(500).send('Error retrieving order')
         })
+})
+
+app.get('/allorders', (req, res) => {
+    sequelize.query(`
+        SELECT orders.name, orders.meal, orders.sides, drink.name AS drink_name, orders.is_to_go, pickup_time.time AS pickup_time
+        FROM orders
+        JOIN drink ON drink.id = orders.drink_name
+        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
+    `)
+    .then((dbResult) => {
+        res.status(200).send(dbResult[0])
+    })
+    .catch((error) => {
+        console.error(error)
+        res.status(500).send('Error getting order history')
+    })
 })
 
 app.listen(SERVER_PORT, () => {

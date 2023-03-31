@@ -6,10 +6,45 @@ const pickupPopup = document.getElementById('pickup-popup')
 const dineInRadio = document.getElementById('dine-in')
 const orderForm = document.getElementById('order-form')
 const orderContainer = document.getElementById('orders-container')
+const orderHistoryContainer = document.getElementById('order-history-container')
 const closeForm = document.querySelector('.close-form')
-let counter = 1
+let formCounter = 1
 
 const baseURL = 'http://localhost:5500/'
+
+function orderHistory () {
+    axios.get('http://localhost:5500/allorders')
+    .then((response) => {
+        let counter = 1
+
+        console.log(response.data)
+
+        response.data.forEach((element) => {
+        let {name, meal, sides, drink_name, is_to_go, pickup_time} = element
+
+        if (pickup_time === null) {
+            pickup_time = ' '
+        }
+
+        const order = document.createElement('div')
+                order.classList.add('ordered-list')
+                order.innerHTML = 
+                    `
+                    <p># ${counter}</p>
+                    <p>Name: ${name}</p>
+                    <p>Meal: ${meal} with ${sides}</p>
+                    <p>Drink: ${drink_name}</p>
+                    <p>${is_to_go} ${pickup_time}</p>
+                    <div class="bothOrderedButtons">
+                    <button class="orderedEditButton">Edit</button>
+                    <button class="orderedDeleteButton">Delete</button>
+                    </div>
+                    `
+                orderHistoryContainer.appendChild(order)
+                counter++
+        })
+    })
+}
 
 function placeOrder () {
     wrapper.classList.remove('active')
@@ -52,10 +87,6 @@ function submitOrder (event) {
     const inOrGoRadio = document.querySelector(`input[name="in-or-go"]:checked`).value
     const pickingUp = document.getElementById('pickup-time').value
 
-    const inOrGo = inOrGoRadio ? inOrGoRadio.value : null;
-    const pickupTime = document.getElementById('pickup-time') ? pickingUp : null;
-    const diningPreference = inOrGo === 'To-Go' ? `To Go, Pickup Time: ${pickupTime}` : 'Dine in';
-
     let body = {name, meal, sides, drink, inOrGoRadio, pickingUp}
 
     axios.post('http://localhost:5500/order', body)
@@ -67,16 +98,19 @@ function submitOrder (event) {
         axios.get('http://localhost:5500/order?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
         .then((response) => {
             let {drink_name, pickup_time} = response.data[0]
+            console.log(pickup_time)
+            if (pickup_time === null) {
+                pickup_time = ' '
+            }
             const order = document.createElement('div')
             order.classList.add('ordered-list')
             order.innerHTML = 
                 `
-                <p># ${counter}</p>
+                <p># ${formCounter}</p>
                 <p>Name: ${name}</p>
                 <p>Meal: ${meal} with ${sides}</p>
                 <p>Drink: ${drink_name}</p>
-                <p>${inOrGoRadio}</p>
-                <p>${pickup_time}</p>
+                <p>${inOrGoRadio} ${pickup_time}</p>
                 <div class="bothOrderedButtons">
                 <button class="orderedEditButton">Edit</button>
                 <button class="orderedDeleteButton">Delete</button>
@@ -84,11 +118,12 @@ function submitOrder (event) {
                 `
             orderContainer.appendChild(order)
             hideOrderWindow()
-            counter += 1
+            formCounter++
         })
     })
 }
 
+window.addEventListener('load', orderHistory)
 orderLink.addEventListener('click', placeOrder)
 btnPopup.addEventListener('click', orderWindow)
 toGoRadio.addEventListener('change', displayPickup)

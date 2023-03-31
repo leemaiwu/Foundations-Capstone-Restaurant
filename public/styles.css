@@ -4,12 +4,17 @@ body {
     margin: auto;
 }
 
-.title {
+.header{
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    height: 12vw;
+    width: 100vw;
+}
+
+#main-title {
     color: white;
-    margin-top: 35px;
-    margin-bottom: 80px;
     font-family: "Chalkduster";
     font-weight: lighter;
     font-size: 6.5vw;
@@ -20,8 +25,9 @@ body {
 .order-title {
     display: flex;
     justify-content: center;
+    width: 100vw;
+    margin-top: 0;
     color: #e4e2e2;
-    margin-top: -60px;
     font-family: "Courier New";
     font-weight: lighter;
     font-size: 1.5vw;
@@ -34,6 +40,9 @@ body {
     text-shadow: 2px 1px 1px rgb(38, 38, 38);
 }
 
+/* Buttons */
+
+/* main order button */
 .center-order-button {
     display: flex;
     justify-content: center;
@@ -66,8 +75,116 @@ body {
     transition: .35s;
 }
 
-#orders-container {
+/* Order submit button */
+.submit-btn {
+    width: 70%;
+    height: 37px;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    box-shadow: inset 0 0 0 1px #ffffff;
+    font-size: 16px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+}
+
+:hover.submit-btn{
+    color: #242424;
+    background-color: #ffffff;
+    transition: .35s;
+}
+
+.center-submit-btn {
     display: flex;
+    justify-content: center;
+}
+
+/* Name suggestion button */
+/* .submit-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 5px;
+    outline: none;
+    font-size: 11px;
+    border-radius: 20px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 35px;
+    width: 95px;
+}
+
+:hover.submit-name{
+    color: #fff;
+    background-color: #e4e2e2;
+    transition: .35s;
+} */
+
+.submit-name {
+    margin-left: 3.5vw;
+    margin-top: 1.8vw;
+	transform: translate(-50%, -50%);
+	color: #ffffff;
+	text-decoration: none;
+	font-size: .75em;
+    padding: 3px;
+	text-transform: uppercase;
+	padding: 0.25em 1em;
+	border: 1px solid #ffffff;
+	transition: 0.01s 0.1s cubic-bezier(0.1, 0, 0.1, 1);
+}
+
+.submit-name::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 100%;
+	bottom: 0;
+	background: #ffffff;
+	transition: 0.15s 0.1s cubic-bezier(0.1, 0, 0.1, 1), left 0.15s cubic-bezier(0.1, 0, 0.1, 1);
+	z-index: -1;
+}
+
+.submit-name::after {
+	content: "";
+	display: inline-block;
+	background-image: url("https://cdn-icons-png.flaticon.com/128/109/109617.png");
+	position: absolute;
+	top: 0;
+	left: calc(100% - 1.5em);
+	right: 1.5em;
+	bottom: 0;
+	background-size: 0.75em;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition: right 0.15s cubic-bezier(0.1, 0, 0.1, 1);
+}
+
+.submit-name:hover {
+	padding: 0.25em 1.75em 0.25em 0.25em;
+}
+
+.submit-name:hover::before {
+	left: calc(100% - 1.5em);
+	right: 0;
+	transition: 0.15s cubic-bezier(0.1, 0, 0.1, 1), left 0.15s 0.1s cubic-bezier(0.1, 0, 0.1, 1);
+}
+
+.submit-name:hover::after {
+	right: 0;
+	transition: right 0.15s 0.1s cubic-bezier(0.1, 0, 0.1, 1);
 }
 
 /* popup form */
@@ -112,7 +229,7 @@ body {
     color: rgb(210, 210, 210);
 }
 
-/* close button */
+/* close icon */
 .close-form {
     position: absolute;
     right: 10px;
@@ -278,37 +395,33 @@ body {
     transition: .35s;
 }
 
-/* Submit button */
-.submit-btn {
-    width: 70%;
-    height: 37px;
-    border: 1px solid transparent;
-    outline: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: transparent;
-    color: white;
-    box-shadow: inset 0 0 0 1px #ffffff;
-    font-size: 16px;
-    font-weight: lighter;
-    letter-spacing: 1px;
-}
-
-:hover.submit-btn{
-    color: #242424;
-    background-color: #ffffff;
-    transition: .35s;
-}
-
-.center-submit-btn {
-    display: flex;
-    justify-content: center;
-}
-
 /* Footer */
+footer {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-shadow: 2px 1px 1px rgb(0, 0, 0);
+}
+
+#orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#order-history-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Recently Placed Orders */
 .placed-orders-title {
     display: flex;
-    width: 100%;
+    width: 100vw;
     margin-top: 35px;
     justify-content: center;
     color: #e4e2e2;
@@ -321,14 +434,6 @@ body {
     letter-spacing: 2px;
     background-color: transparent;
     backdrop-filter: blur(10px);
-    text-shadow: 2px 1px 1px rgb(0, 0, 0);
-}
-
-footer {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     text-shadow: 2px 1px 1px rgb(0, 0, 0);
 }
 
@@ -350,6 +455,24 @@ footer {
     backdrop-filter: blur(20px);
     text-transform: uppercase;
     text-shadow: 2px 1px 1px rgb(36, 36, 36);
+}
+
+/* Order History */
+.order-history-title {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    color: #e4e2e2;
+    font-family: "Courier New";
+    font-weight: lighter;
+    font-size: 1.5vw;
+    border-top: solid 1px #e4e2e2;
+    border-bottom: solid 1px #e4e2e2;
+    padding: 4px;
+    letter-spacing: 2px;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    text-shadow: 2px 1px 1px rgb(0, 0, 0);
 }
 
 /* Placed Orders 'Edit' and 'Delete' Buttons */
@@ -412,4 +535,56 @@ footer {
     color: #fff;
     background-color: #e4e2e2;
     transition: .35s;
+}
+
+/* Name Suggestion Section */
+.name-suggestion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    backdrop-filter: blur(50px);
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    font-family: "Century Gothic", sans-serif;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-stretch: extra-expanded;
+    width: 100vw;
+    height: 8vw;
+    font-size: 1.2vw;
+    margin-top: 25px;
+    text-shadow: none;
+}
+
+.suggestion-input {
+    width: 15%;
+    height: 25px;
+    border-bottom: 1px solid white; 
+    outline: none;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.suggestion-input label {
+    pointer-events: none;
+    margin-top: 2px;
+    letter-spacing: 1px;
+}
+
+.suggestion-input input {
+    background: transparent;
+    width: 90%;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 20px;
+    font-family: "Monospace", "Copperplate";
+    margin-left: 8px;
+}:focus {
+    outline: none;
 }
