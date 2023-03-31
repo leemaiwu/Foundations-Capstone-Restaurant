@@ -2,6 +2,10 @@ body {
     background-color: rgb(0, 0, 0);
     background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg");
     margin: auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 .header{
@@ -35,12 +39,14 @@ body {
     border-bottom: solid 1px #e4e2e2;
     padding: 3px;
     letter-spacing: 2px;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
+    background-color: rgba(178, 178, 178, 0.152);
+    backdrop-filter: blur(5px);
     text-shadow: 2px 1px 1px rgb(38, 38, 38);
 }
 
-/* Buttons */
+/*/////////////////*/
+/*     Buttons     */
+/*/////////////////*/
 
 /* main order button */
 .center-order-button {
@@ -66,7 +72,7 @@ body {
     background-color: transparent;
     backdrop-filter: blur(10px);
     height: 48px;
-    width: 160px;
+    width: 150px;
 }
 
 :hover.order-button{
@@ -102,46 +108,83 @@ body {
     justify-content: center;
 }
 
-/* Name suggestion button */
-/* .submit-name {
+/* Placed Orders 'Edit' and 'Delete' Buttons */
+.bothOrderedButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.orderedEditButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    margin-left: 5px;
     outline: none;
-    font-size: 11px;
-    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 50px;
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 600;
     color: #e4e2e2;
     box-shadow: inset 0 0 0 1px #e4e2e2;
     background-color: transparent;
     backdrop-filter: blur(10px);
-    height: 35px;
-    width: 95px;
+    height: 40px;
+    width: 110px;
 }
 
-:hover.submit-name{
+:hover.orderedEditButton{
     color: #fff;
     background-color: #e4e2e2;
     transition: .35s;
-} */
+}
 
+.orderedDeleteButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 40px;
+    width: 110px;
+}
+
+:hover.orderedDeleteButton{
+    color: #fff;
+    background-color: #e4e2e2;
+    transition: .35s;
+}
+
+/* Name suggestion button */
 .submit-name {
     margin-left: 3.5vw;
     margin-top: 1.8vw;
 	transform: translate(-50%, -50%);
-	color: #ffffff;
+	color: #e9e9e9f8;
+    font-family: "Century Gothic", sans-serif;
+    letter-spacing: 1px;
+    font-weight: 500;
 	text-decoration: none;
-	font-size: .75em;
-    padding: 3px;
+	font-size: .78em;
 	text-transform: uppercase;
-	padding: 0.25em 1em;
-	border: 1px solid #ffffff;
+	padding: 0.32em 1em 0.30em 1em;
+	border: 1px solid #ffffffad;
+    border-radius: 2px;
 	transition: 0.01s 0.1s cubic-bezier(0.1, 0, 0.1, 1);
 }
 
@@ -152,7 +195,7 @@ body {
 	left: 0;
 	right: 100%;
 	bottom: 0;
-	background: #ffffff;
+	background: #ffffffad;
 	transition: 0.15s 0.1s cubic-bezier(0.1, 0, 0.1, 1), left 0.15s cubic-bezier(0.1, 0, 0.1, 1);
 	z-index: -1;
 }
@@ -160,7 +203,7 @@ body {
 .submit-name::after {
 	content: "";
 	display: inline-block;
-	background-image: url("https://cdn-icons-png.flaticon.com/128/109/109617.png");
+	background-image: url("https://www.nicepng.com/png/full/9-97633_right-arrow-white-png-right-arrow-png-white.png");
 	position: absolute;
 	top: 0;
 	left: calc(100% - 1.5em);
@@ -169,11 +212,12 @@ body {
 	background-size: 0.75em;
 	background-repeat: no-repeat;
 	background-position: center;
+    border-radius: 2px;
 	transition: right 0.15s cubic-bezier(0.1, 0, 0.1, 1);
 }
 
 .submit-name:hover {
-	padding: 0.25em 1.75em 0.25em 0.25em;
+	padding: 0.32em 1.75em 0.30em 0.25em;
 }
 
 .submit-name:hover::before {
@@ -187,7 +231,11 @@ body {
 	transition: right 0.15s 0.1s cubic-bezier(0.1, 0, 0.1, 1);
 }
 
-/* popup form */
+/*/////////////////*/
+/*   Popup Window  */
+/*/////////////////*/
+
+/* Popup Form */
 .center-form {
     display: flex;
     justify-content: center;
@@ -395,7 +443,11 @@ body {
     transition: .35s;
 }
 
-/* Footer */
+/*/////////////////*/
+/*      Footer     */
+/*/////////////////*/
+
+/* Footer section */
 footer {
     color: white;
     display: flex;
@@ -432,8 +484,8 @@ footer {
     border-bottom: solid 1px #e4e2e2;
     padding: 4px;
     letter-spacing: 2px;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
+    background-color: rgba(178, 178, 178, 0.152);
+    backdrop-filter: blur(5px);
     text-shadow: 2px 1px 1px rgb(0, 0, 0);
 }
 
@@ -451,8 +503,8 @@ footer {
     letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 700;
-    background-color: transparent;
-    backdrop-filter: blur(20px);
+    background-color: rgba(178, 178, 178, 0.152);
+    backdrop-filter: blur(5px);
     text-transform: uppercase;
     text-shadow: 2px 1px 1px rgb(36, 36, 36);
 }
@@ -475,67 +527,9 @@ footer {
     text-shadow: 2px 1px 1px rgb(0, 0, 0);
 }
 
-/* Placed Orders 'Edit' and 'Delete' Buttons */
-.bothOrderedButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 10px;
-}
-
-.orderedEditButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    cursor: pointer;
-    font-size: 12px;
-    border-radius: 50px;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #e4e2e2;
-    box-shadow: inset 0 0 0 1px #e4e2e2;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    height: 40px;
-    width: 110px;
-}
-
-:hover.orderedEditButton{
-    color: #fff;
-    background-color: #e4e2e2;
-    transition: .35s;
-}
-
-.orderedDeleteButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    cursor: pointer;
-    font-size: 12px;
-    border-radius: 50px;
-    transition-duration: .3s;
-    border: 1px solid transparent;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #e4e2e2;
-    box-shadow: inset 0 0 0 1px #e4e2e2;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    height: 40px;
-    width: 110px;
-}
-
-:hover.orderedDeleteButton{
-    color: #fff;
-    background-color: #e4e2e2;
-    transition: .35s;
-}
+/*/////////////////*/
+/*   Suggest Name  */
+/*/////////////////*/
 
 /* Name Suggestion Section */
 .name-suggestion {
@@ -553,8 +547,8 @@ footer {
     width: 100vw;
     height: 8vw;
     font-size: 1.2vw;
-    margin-top: 25px;
     text-shadow: none;
+    margin-top: 18px;
 }
 
 .suggestion-input {
@@ -565,26 +559,28 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    font-size: 22px;
-    margin-left: 10px;
+    font-size: 1.2vw;
+    margin-left: 8px;
     margin-right: 5px;
+    margin-bottom: 8px;
 }
 
 .suggestion-input label {
     pointer-events: none;
-    margin-top: 2px;
+    /* margin-top: 2px; */
     letter-spacing: 1px;
 }
 
 .suggestion-input input {
     background: transparent;
-    width: 90%;
+    width: 92%;
     border: none;
     height: 100%;
     color: white;
-    font-size: 20px;
-    font-family: "Monospace", "Copperplate";
-    margin-left: 8px;
+    font-size: 1.28vw;
+    font-family: "Courier New";
+    margin-top: 2px;
+    margin-left: 5px;
 }:focus {
     outline: none;
 }

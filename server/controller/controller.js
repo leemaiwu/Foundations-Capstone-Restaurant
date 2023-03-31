@@ -1,4 +1,3 @@
-
 module.exports = {
     seed: (req, res) => {
         sequelize.query(`
