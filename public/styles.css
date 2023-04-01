@@ -1,27 +1,34 @@
 body {
     background-color: rgb(0, 0, 0);
-    background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg");
     margin: auto;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    overflow-x: hidden;
 }
 
 .header{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: transparent;
-    height: 12vw;
+    position: fixed;
+    background-color: black;
+    border-bottom: solid 1px #e4e2e2;
+    box-shadow: 0;
+    padding-left: 4vw;
+    height: 7.8vw;
     width: 100vw;
+    z-index: 5;
 }
 
 #main-title {
     color: white;
     font-family: "Chalkduster";
     font-weight: lighter;
-    font-size: 6.5vw;
+    position: absolute;
+    font-size: 4vw;
     letter-spacing: 2px;
     text-shadow: 1px 1px 6px rgb(0, 0, 0);
 }
@@ -29,19 +36,35 @@ body {
 .order-title {
     display: flex;
     justify-content: center;
+    position: absolute;
     width: 100vw;
     margin-top: 0;
     color: #e4e2e2;
     font-family: "Courier New";
     font-weight: lighter;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     border-top: solid 1px #e4e2e2;
     border-bottom: solid 1px #e4e2e2;
-    padding: 3px;
     letter-spacing: 2px;
     background-color: rgba(178, 178, 178, 0.152);
     backdrop-filter: blur(5px);
     text-shadow: 2px 1px 1px rgb(38, 38, 38);
+    padding: 3px;
+    padding-top: 6px;
+    top: 7.8vw;
+}
+
+/*///   Images  ///*/
+#charcoal-image{
+    background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-top: 7vw;
+    height: calc(98vh - 7.8vw);
+    position: relative;
+    z-index: -1;
 }
 
 /*/////////////////*/
@@ -60,19 +83,24 @@ body {
     align-items: center;
     outline: none;
     cursor: pointer;
-    font-size: 14px;
+    position: absolute;
+    font-size: .8vw;
     border-radius: 50px;
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     color: #e4e2e2;
     box-shadow: inset 0 0 0 1px #e4e2e2;
     background-color: transparent;
     backdrop-filter: blur(10px);
-    height: 48px;
-    width: 150px;
+    height: 3vw;
+    width: 8vw;
+    min-height: 20px;
+    min-width: 45px;
+    top: 12vw;
+    left: calc(50% - 4.5vw);
 }
 
 :hover.order-button{
@@ -122,19 +150,21 @@ body {
     align-items: center;
     outline: none;
     cursor: pointer;
-    font-size: 12px;
+    font-size: .8vw;
     border-radius: 50px;
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     color: #e4e2e2;
     box-shadow: inset 0 0 0 1px #e4e2e2;
     background-color: transparent;
     backdrop-filter: blur(10px);
-    height: 40px;
-    width: 110px;
+    height: 2.5vw;
+    width: 6vw;
+    min-height: 20px;
+    min-width: 45px;
 }
 
 :hover.orderedEditButton{
@@ -149,19 +179,21 @@ body {
     align-items: center;
     outline: none;
     cursor: pointer;
-    font-size: 12px;
+    font-size: .7vw;
     border-radius: 50px;
     transition-duration: .3s;
     border: 1px solid transparent;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     color: #e4e2e2;
     box-shadow: inset 0 0 0 1px #e4e2e2;
     background-color: transparent;
     backdrop-filter: blur(10px);
-    height: 40px;
-    width: 110px;
+    height: 2.5vw;
+    width: 6vw;
+    min-height: 20px;
+    min-width: 45px;
 }
 
 :hover.orderedDeleteButton{
@@ -239,13 +271,21 @@ body {
 .center-form {
     display: flex;
     justify-content: center;
+    align-content: center;
+    position: absolute;
+    left: 50%;
+    top: 19vw;
 }
 
 .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    overflow: hidden;
     color: rgb(207, 207, 207);
+    font-family: "Copperplate";
+    text-shadow: 1px 1px 2px rgb(38, 38, 38);
     width: 330px;
     height: 380px;
     background: transparent;
@@ -253,14 +293,12 @@ body {
     border-radius: 20px;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    overflow: hidden;
     transform: scale(0);
     padding: 40px;
     padding-top: 50px;
     padding-bottom: 35px;
     transition: transform 1s ease, height .2s ease;
-    font-family: "Copperplate";
-    text-shadow: 1px 1px 2px rgb(38, 38, 38);
+    z-index: 3;
 }
 
 .wrapper.active-popup {
@@ -454,6 +492,15 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     text-shadow: 2px 1px 1px rgb(0, 0, 0);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5vw;
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+    padding-top: 1vw;
 }
 
 #orders-container {
@@ -479,7 +526,7 @@ footer {
     color: #e4e2e2;
     font-family: "Courier New";
     font-weight: lighter;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     border-top: solid 1px #e4e2e2;
     border-bottom: solid 1px #e4e2e2;
     padding: 4px;
@@ -490,10 +537,12 @@ footer {
 }
 
 .ordered-list {
+    text-align: left;
     color: white;
     margin: 15px;
     margin-left: 30px;
     padding: 20px;
+    padding-top: 15px;
     outline: none;
     font-size: 14px;
     border-radius: 32px;
@@ -512,18 +561,18 @@ footer {
 /* Order History */
 .order-history-title {
     display: flex;
-    width: 100vw;
     justify-content: center;
+    width: 100vw;
     color: #e4e2e2;
     font-family: "Courier New";
     font-weight: lighter;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     border-top: solid 1px #e4e2e2;
     border-bottom: solid 1px #e4e2e2;
     padding: 4px;
     letter-spacing: 2px;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
+    background-color: rgba(178, 178, 178, 0.152);
+    backdrop-filter: blur(5px);
     text-shadow: 2px 1px 1px rgb(0, 0, 0);
 }
 
@@ -536,6 +585,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 8vw;
     background-color: transparent;
     backdrop-filter: blur(50px);
     border-top: solid 1px white;
@@ -544,11 +595,10 @@ footer {
     font-weight: lighter;
     letter-spacing: 1px;
     font-stretch: extra-expanded;
-    width: 100vw;
-    height: 8vw;
     font-size: 1.2vw;
     text-shadow: none;
     margin-top: 18px;
+    padding: 2vw;
 }
 
 .suggestion-input {
@@ -567,7 +617,6 @@ footer {
 
 .suggestion-input label {
     pointer-events: none;
-    /* margin-top: 2px; */
     letter-spacing: 1px;
 }
 
