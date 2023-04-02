@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+  }
+
 body {
     background-color: rgb(0, 0, 0);
     margin: auto;
@@ -8,6 +15,19 @@ body {
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(41, 41, 41);
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(134, 134, 134, 0.2);
+  }
+
 .header{
     display: flex;
     justify-content: flex-start;
@@ -15,21 +35,32 @@ body {
     background-color: transparent;
     position: fixed;
     background-color: black;
-    border-bottom: solid 1px #e4e2e2;
+    border-bottom: solid 1px #e4e2e254;
     box-shadow: 0;
     padding-left: 4vw;
     height: 7.8vw;
     width: 100vw;
     z-index: 5;
+    background-image: url("https://images.unsplash.com/photo-1616787928056-ae5ab4b649d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80");
+    /* background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg"); */
+}
+
+#title-icon {
+    width: 4vw;
+    padding-left: 27vw;
+    background-color: transparent;
 }
 
 #main-title {
+    position: absolute;
     color: white;
     font-family: "Chalkduster";
-    font-weight: lighter;
-    position: absolute;
+    /* font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial; */
+    /* font-style: italic; */
+    font-stretch: extra-expanded;
+    font-weight: 100;
     font-size: 4vw;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-shadow: 1px 1px 6px rgb(0, 0, 0);
 }
 
@@ -43,8 +74,8 @@ body {
     font-family: "Courier New";
     font-weight: lighter;
     font-size: 1.3vw;
-    border-top: solid 1px #e4e2e2;
-    border-bottom: solid 1px #e4e2e2;
+    border-top: solid 1px #e4e2e254;
+    border-bottom: solid 1px #e4e2e254;
     letter-spacing: 2px;
     background-color: rgba(178, 178, 178, 0.152);
     backdrop-filter: blur(5px);
@@ -56,7 +87,8 @@ body {
 
 /*///   Images  ///*/
 #charcoal-image{
-    background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg");
+    /* background-image: url("https://cdn.pixabay.com/photo/2019/07/30/19/09/bbq-4373644_1280.jpg"); */
+    background-image: url("https://images.unsplash.com/photo-1428895009712-de9e58a18409?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -105,7 +137,7 @@ body {
 
 :hover.order-button{
     color: #fff;
-    background-color: #e4e2e2;
+    background-color: #e4e2e2a0;
     transition: .35s;
 }
 
@@ -158,9 +190,8 @@ body {
     text-transform: uppercase;
     font-weight: 500;
     color: #e4e2e2;
-    box-shadow: inset 0 0 0 1px #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e254;
     background-color: transparent;
-    backdrop-filter: blur(10px);
     height: 2.5vw;
     width: 6vw;
     min-height: 20px;
@@ -169,7 +200,7 @@ body {
 
 :hover.orderedEditButton{
     color: #fff;
-    background-color: #e4e2e2;
+    background-color: #e4e2e2a0;
     transition: .35s;
 }
 
@@ -187,9 +218,8 @@ body {
     text-transform: uppercase;
     font-weight: 500;
     color: #e4e2e2;
-    box-shadow: inset 0 0 0 1px #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e254;
     background-color: transparent;
-    backdrop-filter: blur(10px);
     height: 2.5vw;
     width: 6vw;
     min-height: 20px;
@@ -198,7 +228,7 @@ body {
 
 :hover.orderedDeleteButton{
     color: #fff;
-    background-color: #e4e2e2;
+    background-color: #e4e2e2a0;
     transition: .35s;
 }
 
@@ -214,8 +244,8 @@ body {
 	text-decoration: none;
 	font-size: .78em;
 	text-transform: uppercase;
-	padding: 0.32em 1em 0.30em 1em;
-	border: 1px solid #ffffffad;
+	padding: 0.34em 1em 0.30em 1em;
+	border: .8px solid #ffffffad;
     border-radius: 2px;
 	transition: 0.01s 0.1s cubic-bezier(0.1, 0, 0.1, 1);
 }
@@ -249,7 +279,7 @@ body {
 }
 
 .submit-name:hover {
-	padding: 0.32em 1.75em 0.30em 0.25em;
+	padding: 0.34em 1.75em 0.30em 0.25em;
 }
 
 .submit-name:hover::before {
@@ -352,7 +382,7 @@ body {
 .input-box {
     width: 100%;
     height: 25px;
-    border-bottom: 2px solid white; 
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.749); 
     outline: none;
     display: flex;
     flex-direction: row;
@@ -506,8 +536,11 @@ footer {
 #orders-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: 100vw;
+    margin: 0;
+    /* background-image: url(""); */
 }
 
 #order-history-container {
@@ -515,6 +548,11 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    padding-bottom: 1.3vw;
+    margin: 0;
+    /* background-image: url(""); */
 }
 
 /* Recently Placed Orders */
@@ -527,8 +565,8 @@ footer {
     font-family: "Courier New";
     font-weight: lighter;
     font-size: 1.3vw;
-    border-top: solid 1px #e4e2e2;
-    border-bottom: solid 1px #e4e2e2;
+    border-top: solid 1px #e4e2e254;
+    border-bottom: solid 1px#e4e2e254;
     padding: 4px;
     letter-spacing: 2px;
     background-color: rgba(178, 178, 178, 0.152);
@@ -548,10 +586,11 @@ footer {
     border-radius: 32px;
     transition-duration: .3s;
     border: 1px solid transparent;
-    box-shadow: inset 0 0 0 1px #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e254;
+    font-family: 'open sans',arial,sans-serif;
+    font-weight: 300;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 700;
     background-color: rgba(178, 178, 178, 0.152);
     backdrop-filter: blur(5px);
     text-transform: uppercase;
@@ -567,8 +606,8 @@ footer {
     font-family: "Courier New";
     font-weight: lighter;
     font-size: 1.3vw;
-    border-top: solid 1px #e4e2e2;
-    border-bottom: solid 1px #e4e2e2;
+    border-top: solid 1px #e4e2e254;
+    border-bottom: solid 1px #e4e2e254;
     padding: 4px;
     letter-spacing: 2px;
     background-color: rgba(178, 178, 178, 0.152);
@@ -589,22 +628,28 @@ footer {
     height: 8vw;
     background-color: transparent;
     backdrop-filter: blur(50px);
-    border-top: solid 1px white;
-    border-bottom: solid 1px white;
-    font-family: "Century Gothic", sans-serif;
-    font-weight: lighter;
+    border-top: solid 1px #e4e2e254;
+    border-bottom: none;
+    box-shadow: none;
+    /* font-family: sans-serif; */
+    font-family: 'open sans', arial, sans-serif;
+    /* background-color: rgba(167, 167, 167, 0.132); */
+    backdrop-filter: blur(5px);
+    font-weight: 100;
     letter-spacing: 1px;
     font-stretch: extra-expanded;
     font-size: 1.2vw;
     text-shadow: none;
-    margin-top: 18px;
     padding: 2vw;
+    padding-top: 3vw;
+    margin-top: 5px;
+    background-image: url("https://images.unsplash.com/photo-1616787928056-ae5ab4b649d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80");
 }
 
 .suggestion-input {
     width: 15%;
     height: 25px;
-    border-bottom: 1px solid white; 
+    border-bottom: 1.7px solid #e4e2e254; 
     outline: none;
     display: flex;
     flex-direction: row;
@@ -628,8 +673,22 @@ footer {
     color: white;
     font-size: 1.28vw;
     font-family: "Courier New";
-    margin-top: 2px;
+    margin-top: 1px;
     margin-left: 5px;
 }:focus {
     outline: none;
+}
+
+#copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2.2vw;
+    width: 100vw;
+    font-family: "Courier New";
+    font-weight: lighter;
+    font-size: 1vw;
+    /* background-color: rgba(167, 167, 167, 0.132); */
+    backdrop-filter: blur(5px);
+    background-image: url("https://images.unsplash.com/photo-1616787928056-ae5ab4b649d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80");
 }
