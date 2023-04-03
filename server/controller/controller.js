@@ -1,3 +1,16 @@
+let Sequelize = require('sequelize')
+
+const { CONNECTION_STRING, SERVER_PORT } = process.env
+
+const sequelize = new Sequelize(CONNECTION_STRING, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
+})
+
 module.exports = {
     seed: (req, res) => {
         sequelize.query(`
@@ -5,12 +18,12 @@ module.exports = {
             id SERIAL PRIMARY KEY,
             name VARCHAR NOT NULL
             );
-
+        
         CREATE TABLE pickup_time (
             id SERIAL PRIMARY KEY,
             time VARCHAR NOT NULL
             );
-
+        
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             name VARCHAR NOT NULL,
@@ -20,7 +33,7 @@ module.exports = {
             is_to_go VARCHAR NOT NULL,
             pickup_time INT REFERENCES pickup_time(id)
         );
-
+        
         INSERT INTO drink (name)
             VALUES ('Lemonade'),
             ('Iced Tea'),
@@ -42,34 +55,59 @@ module.exports = {
         })
     },
 
-    getOrder: (req, res) => {
-        const { drink_name, pickup_time, order_id } = req.query
+    allOrders: (req, res) => {
         sequelize.query(`
-            SELECT orders.*, 
-            CASE 
-            WHEN orders.is_to_go = 'to-go' 
-            THEN drink.name
-            ELSE 'N/A'
-            END AS drink_name,
-            CASE 
-            WHEN orders.is_to_go = 'to-go'
-            THEN pickup_time.time
-            ELSE 'N/A'
-            END AS pickup_time
-            FROM orders
-            LEFT JOIN drink ON drink.id = orders.drink_name
-            LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
-            WHERE 
-              (orders.is_to_go = 'to-go' AND drink.id = ${drink_name} AND pickup_time.id = ${pickup_time})
-            OR 
-              (orders.is_to_go = 'dine-in' AND orders.id = ${order_id})
-            `)
-          .then((dbResult) => {
+        SELECT orders.name, orders.meal, orders.sides, drink.name AS drink_name, orders.is_to_go, pickup_time.time AS pickup_time
+        FROM orders
+        JOIN drink ON drink.id = orders.drink_name
+        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
+        `)
+        .then((dbResult) => {
             res.status(200).send(dbResult[0])
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             console.error(error)
-            res.status(500).send("Error retrieving order")
-          })
-      }
+            res.status(500).send('Error getting order history')
+        })
+    },
+
+    submitOrder: (req, res) => {
+        let {name, meal, sides, drink, inOrGoRadio, pickingUp} = req.body
+
+        const pickupTimeClause = pickingUp ? `, pickup_time` : '';
+        const pickupTimeValue = pickingUp ? `, ${pickingUp}` : '';
+
+        sequelize.query(`
+            INSERT INTO orders (name, meal, sides, drink_name, is_to_go${pickupTimeClause})
+            VALUES ('${name}', '${meal}', '${sides}', ${drink}, '${inOrGoRadio}'${pickupTimeValue})
+            RETURNING *;
+        `)
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0])
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('Error submitting order')
+        })
+    },
+
+    postOrder: (req, res) => {
+    let { drink_name, pickup_time } = req.query
+
+    const query = `
+        SELECT orders.*, drink.name AS drink_name, pickup_time.time AS pickup_time
+        FROM orders
+        JOIN drink ON drink.id = orders.drink_name
+        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
+        WHERE drink.id = ${drink_name} AND (pickup_time.id = ${pickup_time} OR pickup_time.id IS NULL)
+    `
+    sequelize.query(query)
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0])
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('Error retrieving order')
+        })
+    }
 }

@@ -5,8 +5,8 @@ const toGoRadio = document.getElementById('to-go')
 const pickupPopup = document.getElementById('pickup-popup')
 const dineInRadio = document.getElementById('dine-in')
 const orderForm = document.getElementById('order-form')
-const orderContainer = document.getElementById('orders-container')
-const orderHistoryContainer = document.getElementById('order-history-container')
+const orderContainer = document.querySelector('.orders-container')
+const orderHistoryContainer = document.querySelector('.order-history-container')
 const closeForm = document.querySelector('.close-form')
 let formCounter = 1
 
@@ -95,7 +95,7 @@ function submitOrder (event) {
         let drinkid = data.drink_name
         let pickuptime = data.pickup_time
 
-        axios.get('http://localhost:5500/order?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
+        axios.get('http://localhost:5500/ordered?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
         .then((response) => {
             let {drink_name, pickup_time} = response.data[0]
             console.log(pickup_time)

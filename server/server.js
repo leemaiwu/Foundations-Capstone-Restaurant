@@ -3,8 +3,6 @@ const express = require('express')
 const cors = require('cors')
 let Sequelize = require('sequelize')
 
-const {seed, submitOrder} = require('./controller/controller.js')
-
 const { CONNECTION_STRING, SERVER_PORT } = process.env
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
@@ -23,63 +21,12 @@ app.use(cors())
 
 app.use(express.static(`${__dirname}/../public`))
 
+const {seed, allOrders, submitOrder, postOrder} = require('./controller/controller.js')
+
 app.post('/seed', seed)
-
-app.post('/order', (req, res) => {
-    let {name, meal, sides, drink, inOrGoRadio, pickingUp} = req.body
-
-    const pickupTimeClause = pickingUp ? `, pickup_time` : '';
-    const pickupTimeValue = pickingUp ? `, ${pickingUp}` : '';
-
-    sequelize.query(`
-        INSERT INTO orders (name, meal, sides, drink_name, is_to_go${pickupTimeClause})
-        VALUES ('${name}', '${meal}', '${sides}', ${drink}, '${inOrGoRadio}'${pickupTimeValue})
-        RETURNING *;
-    `)
-    .then((dbResult) => {
-        res.status(200).send(dbResult[0])
-    })
-    .catch((error) => {
-        console.error(error)
-        res.status(500).send('Error submitting order')
-    })
-})
-
-app.get('/order', (req, res) => {
-    let { drink_name, pickup_time } = req.query
-
-    const query = `
-        SELECT orders.*, drink.name AS drink_name, pickup_time.time AS pickup_time
-        FROM orders
-        JOIN drink ON drink.id = orders.drink_name
-        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
-        WHERE drink.id = ${drink_name} AND (pickup_time.id = ${pickup_time} OR pickup_time.id IS NULL)
-    `
-    sequelize.query(query)
-        .then((dbResult) => {
-            res.status(200).send(dbResult[0])
-        })
-        .catch((error) => {
-            console.error(error)
-            res.status(500).send('Error retrieving order')
-        })
-})
-
-app.get('/allorders', (req, res) => {
-    sequelize.query(`
-        SELECT orders.name, orders.meal, orders.sides, drink.name AS drink_name, orders.is_to_go, pickup_time.time AS pickup_time
-        FROM orders
-        JOIN drink ON drink.id = orders.drink_name
-        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
-    `)
-    .then((dbResult) => {
-        res.status(200).send(dbResult[0])
-    })
-    .catch((error) => {
-        console.error(error)
-        res.status(500).send('Error getting order history')
-    })
-})
+app.get('/allorders', allOrders)
+app.post('/order', submitOrder)
+app.get('/ordered?', postOrder)
 
 app.listen(SERVER_PORT, () => {
     console.log(`listening on ${SERVER_PORT}`)
