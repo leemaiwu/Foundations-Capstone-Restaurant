@@ -13,11 +13,9 @@ let formCounter = 1
 const baseURL = 'http://localhost:5500/'
 
 function orderHistory () {
-    axios.get('http://localhost:5500/allorders')
+    axios.get('/allorders')
     .then((response) => {
         let counter = 1
-
-        console.log(response.data)
 
         response.data.forEach((element) => {
         let {name, meal, sides, drink_name, is_to_go, pickup_time} = element
@@ -89,13 +87,13 @@ function submitOrder (event) {
 
     let body = {name, meal, sides, drink, inOrGoRadio, pickingUp}
 
-    axios.post('http://localhost:5500/order', body)
+    axios.post('/order', body)
     .then((response) => {
         let data = response.data[0]
         let drinkid = data.drink_name
         let pickuptime = data.pickup_time
 
-        axios.get('http://localhost:5500/ordered?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
+        axios.get('/ordered?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
         .then((response) => {
             let {drink_name, pickup_time} = response.data[0]
             console.log(pickup_time)

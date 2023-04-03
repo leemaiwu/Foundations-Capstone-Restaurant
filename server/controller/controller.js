@@ -60,7 +60,7 @@ module.exports = {
         SELECT orders.name, orders.meal, orders.sides, drink.name AS drink_name, orders.is_to_go, pickup_time.time AS pickup_time
         FROM orders
         JOIN drink ON drink.id = orders.drink_name
-        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
+        LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time;
         `)
         .then((dbResult) => {
             res.status(200).send(dbResult[0])
@@ -99,7 +99,7 @@ module.exports = {
         FROM orders
         JOIN drink ON drink.id = orders.drink_name
         LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time
-        WHERE drink.id = ${drink_name} AND (pickup_time.id = ${pickup_time} OR pickup_time.id IS NULL)
+        WHERE drink.id = ${drink_name} AND (pickup_time.id = ${pickup_time} OR pickup_time.id IS NULL);
     `
     sequelize.query(query)
         .then((dbResult) => {
