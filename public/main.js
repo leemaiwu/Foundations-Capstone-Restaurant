@@ -10,6 +10,9 @@ const orderHistoryContainer = document.querySelector('.order-history-container')
 const closeForm = document.querySelector('.close-form')
 let formCounter = 1
 
+const menuButton = document.querySelector('.menu-button')
+const centerMenu = document.querySelector('.center-menu')
+
 const baseURL = 'http://localhost:5500/'
 
 function orderHistory () {
@@ -120,6 +123,16 @@ function submitOrder (event) {
         })
     })
 }
+
+menuButton.addEventListener('click', function() {
+    centerMenu.classList.toggle('hidden')
+    menuButton.classList.toggle('flipped')
+    if (menuButton.classList.contains('flipped')) {
+        menuButton.textContent = ''
+    } else {
+        menuButton.textContent = ''
+    }
+})
 
 window.addEventListener('load', orderHistory)
 orderLink.addEventListener('click', placeOrder)

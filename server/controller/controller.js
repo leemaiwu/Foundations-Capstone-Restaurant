@@ -77,11 +77,23 @@ module.exports = {
         const pickupTimeClause = pickingUp ? `, pickup_time` : '';
         const pickupTimeValue = pickingUp ? `, ${pickingUp}` : '';
 
-        sequelize.query(`
+        sequelize.query(
+          `
             INSERT INTO orders (name, meal, sides, drink_name, is_to_go${pickupTimeClause})
-            VALUES ('${name}', '${meal}', '${sides}', ${drink}, '${inOrGoRadio}'${pickupTimeValue})
+            VALUES (?, ?, ?, ?, ?${pickupTimeValue})
             RETURNING *;
-        `)
+          `,
+          {
+            replacements: [
+              name,
+              meal,
+              sides,
+              drink,
+              inOrGoRadio,
+            ],
+            type: sequelize.QueryTypes.INSERT,
+          }
+        )
         .then((dbResult) => {
             res.status(200).send(dbResult[0])
         })
