@@ -63,6 +63,10 @@ body {
     text-shadow: 1px 1px 6px rgb(0, 0, 0);
 }
 
+:hover#main-title {
+    cursor: pointer;
+}
+
 .order-title {
     display: flex;
     justify-content: center;
@@ -92,7 +96,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    margin-top: 7vw;
+    margin-top: 6.8vw;
     width: 100vw;
     height: calc(98vh - 7.8vw);
     position: relative;
@@ -100,147 +104,15 @@ body {
 }
 
 /*/////////////////*/
-/*       Menu      */
-/*/////////////////*/
-.center-menu.hidden {
-    visibility: hidden;
-    transition: transform .2s ease;
-    transform: scale(0);
-}
-
-.center-menu {
-    display: flex;
-    position: absolute;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    overflow: hidden;
-    background-color: rgba(219, 200, 192, 0.632);
-    backdrop-filter: blur(10px);
-    border-radius: 50px;
-    padding: 30px;
-    padding-bottom: 40px;
-    left: 50%;
-    top: 18vw;
-    width: 600px;
-    z-index: 4;
-    right: 100%;
-    transition: transform .2s ease;
-    transform: scale(0);
-}
-
-.center-menu.visible {
-    visibility: visible;
-    transition: transform .2s ease;
-    transform: scale(1);
-  }
-
-.center-menu.closing {
-    visibility: hidden;
-    transition: transform .2s ease;
-    transform: scale(0);
-}
-
-
-#menu-title {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-    width: 100%;
-    height: 50px;
-    padding-bottom: 5px;
-    font-family: "Chalkduster";
-    color: white;
-    text-shadow: 1px 1px 2px rgb(38, 38, 38);
-    font-size: 50px;
-}
-
-.menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding-left: 35px;
-    width: 100%;
-    font-family: 'open sans', arial, sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
-    font-size: 17px;
-}
-
-.meal-and-size-title {
-    margin: 20px;
-    margin-left: 0;
-    color: black;
-    font-family: "Courier New";
-    font-weight: lighter;
-    font-size: 30px;
-    letter-spacing: 1px;
-    text-shadow: .5px .5px 3px rgba(180, 180, 180, 0.657);
-    text-decoration: underline;
-    text-decoration-thickness: .8px;
-    text-underline-position: under;
-}
-
-/*/////////////////*/
 /*     Buttons     */
 /*/////////////////*/
-
-/* Menu Button */
-.menu-button {
-    display: block;
-    position: absolute;
-    writing-mode: vertical-lr;
-    padding: 7px;
-    background-color: rgba(200, 186, 180, 0.365);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    margin-top: -40%;
-    height: 250px;
-    right: 0;
-    transform: rotate(180deg);
-    font-family: 'open sans', arial, sans-serif;
-    font-weight: lighter;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    transition: transform 01s ease-in-out;
-}
-
-.menu-button.flipped {
-    transform: rotate(180deg);
-}
-
-.menu-button::before {
-    content: "View Menu";
-    transition: opacity 0.3s ease-in-out;
-    position: absolute;
-    bottom: 10%;
-}
-
-.menu-button.flipped::before {
-    opacity: 0;
-}
-
-.menu-button::after {
-    content: "Close Menu";
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    padding-top: 15px;
-}
-
-.menu-button.flipped::after {
-    opacity: 1;
-    visibility: visible;
-}
-
-:hover.menu-button {
-    cursor: pointer;
-    color: white;
-}
-
 /* main order button */
 .center-order-button {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    /* top: 2.3vw;
+    right: 20vw; */
+    top: 30%;
+    right: 20%;
 }
 
 .order-button {
@@ -249,7 +121,6 @@ body {
     align-items: center;
     outline: none;
     cursor: pointer;
-    position: absolute;
     font-size: .8vw;
     border-radius: 50px;
     transition-duration: .3s;
@@ -270,6 +141,46 @@ body {
 }
 
 :hover.order-button{
+    color: #fff;
+    background-color: #e4e2e2a0;
+    transition: .35s;
+}
+
+/* main order button */
+.center-menu-button {
+    position: absolute;
+    /* top: 2.3vw;
+    right: 20vw; */
+    top: 30%;
+    right: 10%;
+}
+
+.menu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    font-size: .8vw;
+    border-radius: 50px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #e4e2e2;
+    box-shadow: inset 0 0 0 1px #e4e2e2;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    height: 3vw;
+    width: 8vw;
+    min-height: 20px;
+    min-width: 45px;
+    top: 12vw;
+    left: calc(50% - 4.5vw);
+}
+
+:hover.menu-button {
     color: #fff;
     background-color: #e4e2e2a0;
     transition: .35s;
@@ -438,7 +349,7 @@ body {
     align-content: center;
     position: absolute;
     left: 50%;
-    top: 19vw;
+    top: 17.2vw;
 }
 
 .wrapper {
@@ -703,7 +614,7 @@ body {
     justify-content: center;
     position: relative;
     width: 100vw;
-    margin-top: -4.5%;
+    margin-top: -2.3%;
     margin-bottom: 0;
     color: #e4e2e2;
     font-family: "Courier New";

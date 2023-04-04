@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="menu.css"/>
+    <link rel="icon" href="https://www.freeiconspng.com/thumbs/chef-hat-png/chef-hat-png-21.png">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin">
+</head>
+<body>
+    <header class="header">
+        <h1 onclick="window.location.href = 'index.html';" id="main-title">Restaurant</h1>
+        <div class="center-order-button">
+            <button onclick="window.location.href = 'index.html';" class="order-button">Home</button>
+        </div>
+        <div class="center-menu-button">
+            <button class="menu-button">Menu</button>
+        </div>
+    </header>
+    <h2 class="order-title">No Menu Required</h2><br>
+
+    <section class="background-images">
+        <div id="main-background-image"></div>
+    </section>
+
+    <div class="menu">
+        <p class="menu-phrase">Dream it, we'll cook it! Our world-renowned chefs are ready! Place an order for anything you desire.</p>
+    </div>
+
+    <footer class="footer">
+        <section class="name-suggestion">
+            <p>If you think you have a dank name for our Restaurant, lettuce know!</p>
+            <div class="suggestion-input">
+                <input type="text">
+            </div>
+            <a href="#" class="submit-name">Submit</a>
+        </section>
+        <div id="copyright">
+            <p>© 2023 Laura Wu. All Rights Reserved.</p>
+            <p style="margin-right:.5em"> </p>
+            <p>|</p>
+            <p style="margin-left:.5em"> </p>
+            <a style="color: white" target="_blank" href="https://www.linkedin.com/in/laura-wu-ut/" id="profile-link">Profile</a>
+        </div>
+    </footer>
+
+    <script src="axios.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="main.js"></script>
+</body>
+</html>
