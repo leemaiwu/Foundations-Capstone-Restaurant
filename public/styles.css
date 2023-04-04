@@ -56,8 +56,6 @@ body {
     position: absolute;
     color: rgb(255, 255, 255);
     font-family: "Chalkduster";
-    /* font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial; */
-    /* font-style: italic; */
     font-stretch: extra-expanded;
     font-weight: 100;
     font-size: 4vw;
@@ -75,7 +73,6 @@ body {
     font-family: "Courier New";
     font-weight: lighter;
     font-size: 1.3vw;
-    /* border-top: solid 1px #e4e2e254; */
     border-bottom: solid 1px #e4e2e254;
     letter-spacing: 2px;
     background-color: rgba(70, 70, 70, 0.288);
@@ -106,7 +103,9 @@ body {
 /*       Menu      */
 /*/////////////////*/
 .center-menu.hidden {
-    display: none;
+    visibility: hidden;
+    transition: transform .2s ease;
+    transform: scale(0);
 }
 
 .center-menu {
@@ -115,7 +114,7 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
     overflow: hidden;
-    background-color: rgba(200, 186, 180, 0.592);
+    background-color: rgba(219, 200, 192, 0.632);
     backdrop-filter: blur(10px);
     border-radius: 50px;
     padding: 30px;
@@ -125,12 +124,22 @@ body {
     width: 600px;
     z-index: 4;
     right: 100%;
-    transition: right 0.3s ease-in-out;
+    transition: transform .2s ease;
+    transform: scale(0);
 }
 
 .center-menu.visible {
-    right: 0;
+    visibility: visible;
+    transition: transform .2s ease;
+    transform: scale(1);
   }
+
+.center-menu.closing {
+    visibility: hidden;
+    transition: transform .2s ease;
+    transform: scale(0);
+}
+
 
 #menu-title {
     display: flex;
@@ -152,19 +161,23 @@ body {
     padding-left: 35px;
     width: 100%;
     font-family: 'open sans', arial, sans-serif;
+    font-weight: 600;
     letter-spacing: 1px;
-    font-size: 15px;
-    text-shadow: .5px .5px 3px rgba(255, 255, 255, 0.337);
+    font-size: 17px;
 }
 
 .meal-and-size-title {
     margin: 20px;
     margin-left: 0;
+    color: black;
     font-family: "Courier New";
     font-weight: lighter;
-    font-size: 35px;
+    font-size: 30px;
     letter-spacing: 1px;
-    text-shadow: .5px .5px 3px rgba(255, 255, 255, 0.657);
+    text-shadow: .5px .5px 3px rgba(180, 180, 180, 0.657);
+    text-decoration: underline;
+    text-decoration-thickness: .8px;
+    text-underline-position: under;
 }
 
 /*/////////////////*/
@@ -177,10 +190,11 @@ body {
     position: absolute;
     writing-mode: vertical-lr;
     padding: 7px;
-    /* background-color: rgba(200, 186, 180, 0.592); */
-    /* backdrop-filter: blur(10px); */
-    /* border-radius: 20px; */
-    margin-top: -33%;
+    background-color: rgba(200, 186, 180, 0.365);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-top: -40%;
+    height: 250px;
     right: 0;
     transform: rotate(180deg);
     font-family: 'open sans', arial, sans-serif;
@@ -197,6 +211,8 @@ body {
 .menu-button::before {
     content: "View Menu";
     transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    bottom: 10%;
 }
 
 .menu-button.flipped::before {
@@ -206,11 +222,14 @@ body {
 .menu-button::after {
     content: "Close Menu";
     opacity: 0;
+    visibility: hidden;
     transition: opacity 0.3s ease-in-out;
+    padding-top: 15px;
 }
 
 .menu-button.flipped::after {
     opacity: 1;
+    visibility: visible;
 }
 
 :hover.menu-button {
@@ -260,13 +279,13 @@ body {
 .submit-btn {
     width: 160px;
     height: 37px;
-    border: 1px solid transparent;
+    border: .5px solid transparent;
     outline: none;
     border-radius: 20px;
     cursor: pointer;
     background-color: transparent;
     color: white;
-    box-shadow: inset 0 0 0 1px #ffffff;
+    box-shadow: inset 0 0 0 1px #ffffffac;
     font-size: 15px;
     font-weight: lighter;
     letter-spacing: 1px;
@@ -432,7 +451,7 @@ body {
     font-family: "Copperplate";
     font-weight: lighter;
     text-shadow: 1px 1px 2px rgb(38, 38, 38);
-    border: 2px solid rgb(202, 202, 202, .5);
+    border: 1px solid rgba(202, 202, 202, 0.393);
     /* background: transparent; */
     background-color: #1d1d1d72;
     backdrop-filter: blur(20px);
@@ -444,7 +463,7 @@ body {
     padding-bottom: 35px;
     width: 310px;
     height: 360px;
-    transition: transform 1s ease, height .2s ease;
+    transition: transform .6s ease, height .2s ease;
     z-index: 3;
 }
 

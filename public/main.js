@@ -125,8 +125,9 @@ function submitOrder (event) {
 }
 
 menuButton.addEventListener('click', function() {
-    centerMenu.classList.toggle('hidden')
-    menuButton.classList.toggle('flipped')
+    centerMenu.classList.toggle('hidden');
+    centerMenu.classList.toggle('visible');
+    menuButton.classList.toggle('flipped');
     if (menuButton.classList.contains('flipped')) {
         menuButton.textContent = ''
     } else {
