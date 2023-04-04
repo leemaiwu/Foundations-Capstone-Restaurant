@@ -21,12 +21,19 @@ app.use(cors())
 
 app.use(express.static(`${__dirname}/../public`))
 
-const {seed, allOrders, submitOrder, postOrder} = require('./controller/controller.js')
+const {
+    seed,
+    allOrders,
+    submitOrder,
+    postOrder,
+    deleteOrder
+} = require('./controller/controller.js')
 
 app.post('/seed', seed)
 app.get('/allorders', allOrders)
 app.post('/order', submitOrder)
 app.get('/ordered?', postOrder)
+app.delete('/order/:id', deleteOrder)
 
 app.listen(SERVER_PORT, () => {
     console.log(`listening on ${SERVER_PORT}`)

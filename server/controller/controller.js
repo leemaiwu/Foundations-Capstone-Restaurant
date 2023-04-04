@@ -57,7 +57,7 @@ module.exports = {
 
     allOrders: (req, res) => {
         sequelize.query(`
-        SELECT orders.name, orders.meal, orders.sides, drink.name AS drink_name, orders.is_to_go, pickup_time.time AS pickup_time
+        SELECT orders.id, orders.name, orders.meal, orders.sides, drink.name AS drink_name, orders.is_to_go, pickup_time.time AS pickup_time
         FROM orders
         JOIN drink ON drink.id = orders.drink_name
         LEFT JOIN pickup_time ON pickup_time.id = orders.pickup_time;
@@ -120,6 +120,24 @@ module.exports = {
         .catch((error) => {
             console.error(error)
             res.status(500).send('Error retrieving order')
+        })
+    },
+
+    deleteOrder: (req, res) => {
+        const id = req.params.id
+
+        sequelize.query(
+            `
+              DELETE FROM orders
+              WHERE id = ${id};
+            `
+            )
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0])
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('Error deleting order')
         })
     }
 }

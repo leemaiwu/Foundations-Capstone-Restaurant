@@ -13,12 +13,13 @@ let formCounter = 1
 const baseURL = 'http://localhost:5500/'
 
 function orderHistory () {
+    orderHistoryContainer.innerHTML = ''
     axios.get('/allorders')
     .then((response) => {
         let counter = 1
 
         response.data.forEach((element) => {
-        let {name, meal, sides, drink_name, is_to_go, pickup_time} = element
+        let {id, name, meal, sides, drink_name, is_to_go, pickup_time} = element
 
         if (pickup_time === null) {
             pickup_time = ' '
@@ -35,12 +36,15 @@ function orderHistory () {
                     <p>${is_to_go} ${pickup_time}</p>
                     <div class="bothOrderedButtons">
                     <button class="orderedEditButton">Edit</button>
-                    <button class="orderedDeleteButton">Delete</button>
+                    <button class="orderedDeleteButton" onClick="deleteOrder(${id})">Delete</button>
                     </div>
                     `
                 orderHistoryContainer.appendChild(order)
                 counter++
         })
+    })
+    .catch((err) => {
+        console.log(err)
     })
 }
 
@@ -50,6 +54,7 @@ function placeOrder () {
 
 function orderWindow () {
     wrapper.classList.add('active-popup')
+    document.documentElement.scrollTop = 0
     orderForm.reset()
     const inOrGoRadio = document.querySelector(`input[name="in-or-go"]:checked`)
     if (!inOrGoRadio) {
@@ -95,7 +100,7 @@ function submitOrder (event) {
 
         axios.get('/ordered?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
         .then((response) => {
-            let {drink_name, pickup_time} = response.data[0]
+            let {drink_name, pickup_time, id} = response.data[0]
             console.log(pickup_time)
             if (pickup_time === null) {
                 pickup_time = ' '
@@ -111,7 +116,7 @@ function submitOrder (event) {
                 <p>${inOrGoRadio} ${pickup_time}</p>
                 <div class="bothOrderedButtons">
                 <button class="orderedEditButton">Edit</button>
-                <button class="orderedDeleteButton">Delete</button>
+                <button class="orderedDeleteButton" onClick="deleteOrder(${id})">Delete</button>
                 </div>
                 `
             orderContainer.appendChild(order)
@@ -119,6 +124,20 @@ function submitOrder (event) {
             formCounter++
         })
     })
+    .catch((err) => {
+        console.log(err)
+        alert('Error submitting order')
+    })
+}
+
+function deleteOrder (id) {
+    axios.delete('/order/' + id)
+    .then(() => {
+        // orderHistory()
+        document.documentElement.scrollTop = 0
+        window.location.reload()
+    })
+    console.log('deleteorder')
 }
 
 window.addEventListener('load', orderHistory)
