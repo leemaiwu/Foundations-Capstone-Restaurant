@@ -5,10 +5,9 @@ const toGoRadio = document.getElementById('to-go')
 const pickupPopup = document.getElementById('pickup-popup')
 const dineInRadio = document.getElementById('dine-in')
 const orderForm = document.getElementById('order-form')
-const orderContainer = document.querySelector('.orders-container')
 const orderHistoryContainer = document.querySelector('.order-history-container')
 const closeForm = document.querySelector('.close-form')
-let formCounter = 1
+const placedPopup = document.querySelector('.popup-message')
 
 const baseURL = 'http://localhost:5500/'
 
@@ -16,7 +15,6 @@ function orderHistory () {
     orderHistoryContainer.innerHTML = ''
     axios.get('/allorders')
     .then((response) => {
-        let counter = 1
 
         response.data.forEach((element) => {
         let {id, name, meal, sides, drink_name, is_to_go, pickup_time} = element
@@ -26,21 +24,20 @@ function orderHistory () {
         }
 
         const order = document.createElement('div')
-                order.classList.add('ordered-list')
-                order.innerHTML = 
-                    `
-                    <p># ${counter}</p>
-                    <p>Name: ${name}</p>
-                    <p>Meal: ${meal} with ${sides}</p>
-                    <p>Drink: ${drink_name}</p>
-                    <p>${is_to_go} ${pickup_time}</p>
-                    <div class="bothOrderedButtons">
-                    <button class="orderedEditButton">Edit</button>
-                    <button class="orderedDeleteButton" onClick="deleteOrder(${id})">Delete</button>
-                    </div>
-                    `
-                orderHistoryContainer.appendChild(order)
-                counter++
+            order.classList.add('ordered-list')
+            order.innerHTML = 
+                `
+                <p># ${id}</p>
+                <p>Name: ${name}</p>
+                <p>Meal: ${meal} with ${sides}</p>
+                <p>Drink: ${drink_name}</p>
+                <p>${is_to_go} ${pickup_time}</p>
+                <div class="bothOrderedButtons">
+                <button class="orderedEditButton">Edit</button>
+                <button class="orderedDeleteButton" onClick="deleteOrder(${id})">Delete</button>
+                </div>
+                `
+            orderHistoryContainer.appendChild(order)
         })
     })
     .catch((err) => {
@@ -95,12 +92,13 @@ function submitOrder (event) {
     axios.post('/order', body)
     .then((response) => {
         let data = response.data[0]
+        let id = response.data[0].id
         let drinkid = data.drink_name
         let pickuptime = data.pickup_time
 
         axios.get('/ordered?drink_name=' + drinkid + '&pickup_time=' + pickuptime)
         .then((response) => {
-            let {drink_name, pickup_time, id} = response.data[0]
+            let {drink_name, pickup_time} = response.data[0]
             console.log(pickup_time)
             if (pickup_time === null) {
                 pickup_time = ' '
@@ -109,7 +107,7 @@ function submitOrder (event) {
             order.classList.add('ordered-list')
             order.innerHTML = 
                 `
-                <p># ${formCounter}</p>
+                <p># ${id}</p>
                 <p>Name: ${name}</p>
                 <p>Meal: ${meal} with ${sides}</p>
                 <p>Drink: ${drink_name}</p>
@@ -119,9 +117,8 @@ function submitOrder (event) {
                 <button class="orderedDeleteButton" onClick="deleteOrder(${id})">Delete</button>
                 </div>
                 `
-            orderContainer.appendChild(order)
+            orderHistoryContainer.appendChild(order)
             hideOrderWindow()
-            formCounter++
         })
     })
     .catch((err) => {
@@ -133,11 +130,14 @@ function submitOrder (event) {
 function deleteOrder (id) {
     axios.delete('/order/' + id)
     .then(() => {
-        // orderHistory()
-        document.documentElement.scrollTop = 0
-        window.location.reload()
+        orderHistory()
+        // document.documentElement.scrollTop = 0
+        // window.location.reload()
     })
-    console.log('deleteorder')
+    .catch((err) => {
+        console.log(err)
+        alert('Error deleting order')
+    })
 }
 
 window.addEventListener('load', orderHistory)
@@ -146,6 +146,16 @@ btnPopup.addEventListener('click', orderWindow)
 toGoRadio.addEventListener('change', displayPickup)
 dineInRadio.addEventListener('change', hidePickup)
 orderForm.addEventListener('submit', submitOrder)
+
 closeForm.addEventListener('click', () => {
     wrapper.classList.toggle('active-popup')
+})
+
+orderForm.addEventListener('submit', () => {
+    setTimeout(() => {
+      placedPopup.classList.toggle('active-popup')
+      setTimeout(() => {
+        placedPopup.classList.toggle('active-popup')
+      }, 3500)
+    }, 300)
 })

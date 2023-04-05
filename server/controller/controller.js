@@ -72,7 +72,7 @@ module.exports = {
     },
 
     submitOrder: (req, res) => {
-        let {name, meal, sides, drink, inOrGoRadio, pickingUp} = req.body
+        let {id, name, meal, sides, drink, inOrGoRadio, pickingUp} = req.body
 
         const pickupTimeClause = pickingUp ? `, pickup_time` : '';
         const pickupTimeValue = pickingUp ? `, ${pickingUp}` : '';
