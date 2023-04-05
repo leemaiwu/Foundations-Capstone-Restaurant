@@ -8,6 +8,7 @@ const orderForm = document.getElementById('order-form')
 const orderHistoryContainer = document.querySelector('.order-history-container')
 const closeForm = document.querySelector('.close-form')
 const placedPopup = document.querySelector('.popup-message')
+const submitNameBtn = document.querySelector('.submit-name')
 
 const baseURL = 'http://localhost:5500/'
 
@@ -140,12 +141,32 @@ function deleteOrder (id) {
     })
 }
 
+function nameSuggestion () {
+    const suggestedName = document.getElementById('restaurant-name').value
+
+    let body = {suggestedName}
+
+    axios.post('/name', body)
+    .then(() => {
+    })
+    .catch((err) => {
+        console.log(err)
+        alert('Error submitting name suggestion')
+    })
+    clearNameSuggestion()
+}
+
+function clearNameSuggestion () {
+    document.getElementById('restaurant-name').value = ""
+}
+
 window.addEventListener('load', orderHistory)
 orderLink.addEventListener('click', placeOrder)
 btnPopup.addEventListener('click', orderWindow)
 toGoRadio.addEventListener('change', displayPickup)
 dineInRadio.addEventListener('change', hidePickup)
 orderForm.addEventListener('submit', submitOrder)
+submitNameBtn.addEventListener('click', nameSuggestion)
 
 closeForm.addEventListener('click', () => {
     wrapper.classList.toggle('active-popup')

@@ -18,12 +18,12 @@ module.exports = {
             id SERIAL PRIMARY KEY,
             name VARCHAR NOT NULL
             );
-        
+
         CREATE TABLE pickup_time (
             id SERIAL PRIMARY KEY,
             time VARCHAR NOT NULL
             );
-        
+
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             name VARCHAR NOT NULL,
@@ -32,15 +32,20 @@ module.exports = {
             drink_name INT NOT NULL REFERENCES drink(id),
             is_to_go VARCHAR NOT NULL,
             pickup_time INT REFERENCES pickup_time(id)
-        );
-        
+            );
+
+        CREATE TABLE restaurant_name (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR NOT NULL
+            );
+
         INSERT INTO drink (name)
             VALUES ('Lemonade'),
             ('Iced Tea'),
             ('Sparkling Water'),
             ('Soda'),
             ('Diet Soda');
-        
+
         INSERT INTO pickup_time (time)
             VALUES ('Morning (9-11AM)'),
             ('Afternoon (12-4PM)'),
@@ -138,6 +143,31 @@ module.exports = {
         .catch((error) => {
             console.error(error)
             res.status(500).send('Error deleting order')
+        })
+    },
+
+    nameSuggest: (req, res) => {
+        let {suggestedName} = req.body
+
+        sequelize.query(
+            `
+            INSERT INTO restaurant_name (name)
+            VALUES (?)
+            RETURNING *;
+            `,
+            {
+            replacements: [
+                suggestedName
+            ],
+            type: sequelize.QueryTypes.INSERT
+            }
+        )
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0])
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(500).send('Error submiting Restaurant Name')
         })
     }
 }

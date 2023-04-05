@@ -26,7 +26,8 @@ const {
     allOrders,
     submitOrder,
     postOrder,
-    deleteOrder
+    deleteOrder,
+    nameSuggest
 } = require('./controller/controller.js')
 
 app.post('/seed', seed)
@@ -34,6 +35,7 @@ app.get('/allorders', allOrders)
 app.post('/order', submitOrder)
 app.get('/ordered?', postOrder)
 app.delete('/order/:id', deleteOrder)
+app.post('/name', nameSuggest)
 
 app.listen(SERVER_PORT, () => {
     console.log(`listening on ${SERVER_PORT}`)

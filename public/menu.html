@@ -11,14 +11,15 @@
 </head>
 <body>
     <header class="header">
-        <h1 onclick="window.location.href = 'index.html';" id="main-title">Restaurant</h1>
+        <h1 onclick="window.location.href = 'home.html';" id="main-title">Restaurant</h1>
         <div class="center-order-button">
-            <button onclick="window.location.href = 'index.html';" class="order-button">Home</button>
+            <button onclick="window.location.href = 'home.html';" class="order-button">Home</button>
         </div>
         <div class="center-menu-button">
             <button class="menu-button">Menu</button>
         </div>
     </header>
+
     <h2 class="order-title">No Menu Necessary</h2><br>
 
     <section class="background-images">
@@ -33,9 +34,9 @@
         <section class="name-suggestion">
             <p>If you think you have a dank name for our Restaurant, lettuce know!</p>
             <div class="suggestion-input">
-                <input type="text">
+                <input type="text" id="restaurant-name">
             </div>
-            <a href="#" class="submit-name">Submit</a>
+            <a href="#" class="submit-name" type="submit">Submit</a>
         </section>
         <div id="copyright">
             <p>© 2023 Laura Wu. All Rights Reserved.</p>
@@ -48,6 +49,6 @@
 
     <script src="axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-    <script src="main.js"></script>
+    <script src="menu.js"></script>
 </body>
 </html>
