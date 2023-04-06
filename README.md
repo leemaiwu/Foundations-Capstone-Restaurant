@@ -2,7 +2,7 @@
 
 Welcome to my Restaurant web app- where dining is reimagined. I’m a big foodie, so creating a website about food was really enjoyable. You can order any meal you'd like through Restaurant. There isn't a menu because the chefs are able to prepare anything you’d like. In my perfect world, this Restaurant would exist.
 
-![Restaurant Landing Page](ReadMe-Images/Restaurant Landing Page.png)
+![Restaurant Landing Page](https://github.com/leemaiwu/Foundations-Capstone-Restaurant/blob/d250ba330e22529d93f53da4dda911ec49066b09/ReadMe-Images/Restaurant%20Landing%20Page.png)
 
 ### Technologies Used
 - Javascript
@@ -19,7 +19,7 @@ Welcome to my Restaurant web app- where dining is reimagined. I’m a big foodie
 - GIT
 - github
 
-![Restaurant Landing Page](ReadMe-Images/Restaurant Order History and Footer.png)
+![Restaurant Landing Page](https://github.com/leemaiwu/Foundations-Capstone-Restaurant/blob/d250ba330e22529d93f53da4dda911ec49066b09/ReadMe-Images/Restaurant%20Order%20History%20and%20Footer.png)
 
 I named this eatery ‘Restaurant’, but if you think you have a better name, send it over! I’d love to hear your ideas. When you click submit, it sends your suggestion to my bit.io database with an axios post request. Using Sequelize, I made sure to sanitize all input fields. This footer is also on the home page.
 
