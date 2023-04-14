@@ -38,10 +38,10 @@ Once submitted, you can view your order below. Also, this eatery is named ‘Res
 - GIT
 - github
 
-## Author
-Laura Wu - Web Developer.
-
-## Watch Virtual Walkthrough
+## Watch Demo
 https://youtu.be/1sWL6roOwZg
 
-note: The IP address is no longer being hosted.
+Note: The IP address is no longer being hosted.
+
+## Author
+Laura Wu - Web Developer.
