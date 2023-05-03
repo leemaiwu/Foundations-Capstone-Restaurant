@@ -1,6 +1,10 @@
 # Restaurant
 Welcome to Restaurant- where dining is reimagined. You can order any meal you'd like!
 
+## Demo
+A demo of the application is available on [Youtube](https://youtu.be/1sWL6roOwZg){:target="_blank"}.
+Note that the IP address is no longer being hosted.
+
 ![Restaurant Landing Page](https://github.com/leemaiwu/Foundations-Capstone-Restaurant/blob/d250ba330e22529d93f53da4dda911ec49066b09/ReadMe-Images/Restaurant%20Landing%20Page.png)
 
 
@@ -37,9 +41,6 @@ Also, if you have any suggestions for the restaurant's name, please submit it in
 - AWS
 - GIT
 - github
-
-## Demo
-You can watch my demo on [Youtube](https://youtu.be/1sWL6roOwZg). Note that the IP address is no longer being hosted.
 
 ## Author
 Laura Wu - Web Developer.
