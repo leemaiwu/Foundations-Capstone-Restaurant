@@ -24,7 +24,7 @@ Also, if you have any suggestions for the restaurant's name, please submit it in
 
 
 ## Demo
-A demo of the application is available on <a href="https://youtu.be/1sWL6roOwZg" target="_blank">Youtube</a>..
+A demo of the application is available on [Youtube](https://youtu.be/1sWL6roOwZg).
 Note that the IP address is no longer being hosted.
 
 
